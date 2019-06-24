@@ -1,9 +1,0 @@
-# Import TensorFlow configuration.
-import %workspace%/tensorflow/.tf_configure.bazelrc
-import %workspace%/tensorflow/tools/bazel.rc
-
-# Coloring for error messages.
-common --color=yes
-
-# Always print test errors.
-test --test_output=errors
