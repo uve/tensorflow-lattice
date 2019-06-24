@@ -149,6 +149,13 @@ To build a pip package for TensorFlow with CPU-only support:
   tensorflow/tools/pip_package:build_pip_package
 ```
 
+My config:
+```shell
+ bazel build --config=opt --copt=-march=native --copt=-mfpmath=both --genrule_strategy=standalone --spawn_strategy=standalone --define=no_tensorflow_py_deps=true //tensorflow/tools/pip_package:build_pip_package
+```
+
+
+
 To build a pip package for TensorFlow with GPU support:
 
 ```shell
@@ -173,6 +180,13 @@ To build a pip package for TensorFlow with CPU-only support:
 (tensorflow-lattice)~/lattice$ bazel build \
   --config=opt :pip_pkg
 ```
+
+My config:
+```shell
+ bazel build --config=opt  --copt=-march=native --copt=-mfpmath=both  --define framework_shared_object=true   --distinct_host_configuration=false --genrule_strategy=standalone --spawn_strategy=standalone   :pip_pkg
+```
+
+
 
 ### Install TensorFlow Lattice pip package
 
