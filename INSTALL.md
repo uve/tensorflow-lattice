@@ -155,6 +155,11 @@ My config:
 ```
 
 
+Linux with Cuda config:
+```shell
+bazel build --config=opt --config=cuda --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" --genrule_strategy=standalone --spawn_strategy=standalone --define=no_tensorflow_py_deps=true --noincompatible_strict_action_env //tensorflow/tools/pip_package:build_pip_package
+```
+
 
 To build a pip package for TensorFlow with GPU support:
 
@@ -181,10 +186,24 @@ To build a pip package for TensorFlow with CPU-only support:
   --config=opt :pip_pkg
 ```
 
-My config:
+My configs:
 ```shell
  bazel build --config=opt  --copt=-march=native --copt=-mfpmath=both  --define framework_shared_object=true   --distinct_host_configuration=false --genrule_strategy=standalone --spawn_strategy=standalone   :pip_pkg
+
+ bazel build --define framework_shared_object=true --copt="-D_GLIBCXX_USE_CXX11_ABI=0" --compilation_mode=opt --distinct_host_configuration=false --genrule_strategy=standalone --spawn_strategy=standalone --noincompatible_strict_action_env :pip_pkg
 ```
+
+
+CUDA linux:
+```shell
+  bazel build --config=opt \
+              --define framework_shared_object=true \
+              --distinct_host_configuration=false \
+              --genrule_strategy=standalone \
+              --spawn_strategy=standalone :pip_pkg
+            
+```
+
 
 
 
